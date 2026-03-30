@@ -30,11 +30,7 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
 .btn-success{background:transparent;color:var(--success);border-color:var(--success)}
 .btn-success:hover{background:rgba(126,200,160,.1)}
 
-/* ── CONFIG BANNER ── */
-.config-banner{background:#1a1200;border-bottom:2px solid var(--gold);padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.config-banner.hidden{display:none}
-.config-banner p{font-size:13px;color:var(--gold);flex:1}
-.config-banner input{flex:2;min-width:200px;padding:6px 10px;background:var(--card2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px;font-family:'Exo 2',sans-serif}
+
 
 /* ── MAIN LAYOUT ── */
 .page{display:none;padding:20px;max-width:900px;margin:0 auto}
@@ -101,13 +97,7 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
 .stat-val{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--gold);display:block}
 .stat-lbl{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
 
-/* ── SYNC STATUS ── */
-.sync-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--card2);border:1px solid var(--border);border-radius:8px;margin-bottom:12px;font-size:12px;color:var(--muted)}
-.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
-.sync-dot.ok{background:var(--success)}
-.sync-dot.loading{background:var(--gold);animation:pulse .8s infinite}
-.sync-dot.err{background:var(--danger)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
 
 /* ── ADMIN PAGE ── */
 .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -151,17 +141,7 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
 .toast.error{background:var(--danger);color:#fff}
 .toast.info{background:var(--gold);color:#1A1200}
 
-/* ── SETUP PAGE ── */
-.setup-steps{display:flex;flex-direction:column;gap:16px}
-.step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
-.step-num{display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#1A1200;font-weight:700;font-size:14px;align-items:center;justify-content:center;margin-right:10px;flex-shrink:0}
-.step-header{display:flex;align-items:center;margin-bottom:10px}
-.step-title{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;color:var(--text)}
-.step p,.step li{font-size:13px;color:var(--muted);line-height:1.7}
-.step ol{padding-left:20px}
-.code-block{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px;font-family:monospace;font-size:12px;color:var(--gold-bright);margin:10px 0;white-space:pre-wrap;word-break:break-all;position:relative}
-.copy-btn{position:absolute;top:8px;right:8px;padding:3px 8px;font-size:11px;background:var(--border);border:none;border-radius:4px;color:var(--muted);cursor:pointer}
-.copy-btn:hover{background:var(--muted);color:var(--dark)}
+
 
 /* ── RESPONSIVE ── */
 @media(max-width:500px){
@@ -201,17 +181,10 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
   <div class="nav-right">
     <button class="btn btn-sm" onclick="showPage('leaderboard')" id="nav-leaderboard">Leaderboard</button>
     <button class="btn btn-sm" onclick="requirePin('admin')" id="nav-admin">⚙️ Admin</button>
-    <button class="btn btn-sm" onclick="showPage('setup')" id="nav-setup">Setup</button>
   </div>
 </div>
 
-<!-- CONFIG BANNER -->
-<div class="config-banner" id="configBanner">
-  <p>⚠️ Google Sheets not connected. Enter your Apps Script URL to enable live sync:</p>
-  <input type="text" id="scriptUrlInput" placeholder="https://script.google.com/macros/s/.../exec" />
-  <button class="btn btn-gold btn-sm" onclick="saveScriptUrl()">Connect</button>
-  <button class="btn btn-sm" onclick="dismissBanner()">Use offline</button>
-</div>
+
 
 <!-- ══════════════ LEADERBOARD PAGE ══════════════ -->
 <div class="page active" id="page-leaderboard">
@@ -220,13 +193,6 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
     <div class="powered">Powered by · GECI UAE Alumni</div>
     <div class="title">🏏 IPL 2026 PREDICTIONS</div>
     <div class="subtitle" id="lb-subtitle">Loading...</div>
-  </div>
-
-  <div class="sync-bar">
-    <div class="sync-dot" id="syncDot"></div>
-    <span id="syncStatus">Initialising...</span>
-    <div style="flex:1"></div>
-    <button class="btn btn-sm" onclick="loadData()">↻ Refresh</button>
   </div>
 
   <!-- Match tabs -->
@@ -259,9 +225,8 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
 
 <!-- ══════════════ ADMIN PAGE ══════════════ -->
 <div class="page" id="page-admin">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+  <div style="margin-bottom:16px">
     <h2 style="font-family:'Rajdhani',sans-serif;font-size:26px;color:var(--gold-bright)">⚙️ Admin Panel</h2>
-    <button class="btn btn-sm btn-success" onclick="syncToSheets()">☁ Save to Sheets</button>
   </div>
 
   <div class="admin-grid">
@@ -328,151 +293,6 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
   </div>
 </div>
 
-<!-- ══════════════ SETUP PAGE ══════════════ -->
-<div class="page" id="page-setup">
-  <h2 style="font-family:'Rajdhani',sans-serif;font-size:26px;color:var(--gold-bright);margin-bottom:16px">🔧 Google Sheets Setup</h2>
-  <div class="setup-steps">
-
-    <div class="step">
-      <div class="step-header"><span class="step-num">1</span><span class="step-title">Create your Google Sheet</span></div>
-      <p>Create a new Google Sheet with two tabs named exactly:</p>
-      <ul style="padding-left:20px;margin-top:6px">
-        <li><strong style="color:var(--gold)">Players</strong> — columns: <code style="color:var(--gold-bright)">Name, Batch, Phone</code></li>
-        <li><strong style="color:var(--gold)">Scores</strong> — columns: <code style="color:var(--gold-bright)">Name, Match, Points, Date</code></li>
-      </ul>
-    </div>
-
-    <div class="step">
-      <div class="step-header"><span class="step-num">2</span><span class="step-title">Create an Apps Script</span></div>
-      <ol>
-        <li>In your Sheet, go to <strong>Extensions → Apps Script</strong></li>
-        <li>Delete any existing code and paste the code below</li>
-        <li>Click <strong>Save</strong>, then <strong>Deploy → New deployment</strong></li>
-        <li>Choose type: <strong>Web app</strong>, set access to <strong>Anyone</strong></li>
-        <li>Copy the deployment URL</li>
-      </ol>
-      <div class="code-block" id="appsScriptCode">
-// IPL Leaderboard - Google Apps Script Backend
-const SHEET_ID = SpreadsheetApp.getActiveSpreadsheet().getId();
-
-function doGet(e) {
-  const action = e.parameter.action;
-  if (action === 'getPlayers') return getPlayers();
-  if (action === 'getScores') return getScores();
-  if (action === 'getAll') return getAll();
-  return jsonResponse({error: 'Unknown action'});
-}
-
-function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
-  if (data.action === 'addPlayer') return addPlayer(data);
-  if (data.action === 'updateScore') return updateScore(data);
-  if (data.action === 'addMatch') return addMatch(data);
-  if (data.action === 'bulkUpdateScores') return bulkUpdateScores(data);
-  return jsonResponse({error: 'Unknown action'});
-}
-
-function getAll() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const players = sheetToArray(ss.getSheetByName('Players'));
-  const scores = sheetToArray(ss.getSheetByName('Scores'));
-  return jsonResponse({players, scores});
-}
-
-function getPlayers() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  return jsonResponse(sheetToArray(ss.getSheetByName('Players')));
-}
-
-function getScores() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  return jsonResponse(sheetToArray(ss.getSheetByName('Scores')));
-}
-
-function addPlayer(data) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName('Players');
-  sheet.appendRow([data.name, data.batch, data.phone || '']);
-  return jsonResponse({success: true});
-}
-
-function updateScore(data) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName('Scores');
-  const rows = sheet.getDataRange().getValues();
-  for (let i = 1; i < rows.length; i++) {
-    if (rows[i][0] === data.name && rows[i][1] === data.match) {
-      sheet.getRange(i + 1, 3).setValue(data.points);
-      return jsonResponse({success: true, updated: true});
-    }
-  }
-  sheet.appendRow([data.name, data.match, data.points, new Date().toISOString()]);
-  return jsonResponse({success: true, inserted: true});
-}
-
-function bulkUpdateScores(data) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName('Scores');
-  data.scores.forEach(s => {
-    const rows = sheet.getDataRange().getValues();
-    let found = false;
-    for (let i = 1; i < rows.length; i++) {
-      if (rows[i][0] === s.name && rows[i][1] === s.match) {
-        sheet.getRange(i + 1, 3).setValue(s.points);
-        found = true; break;
-      }
-    }
-    if (!found) sheet.appendRow([s.name, s.match, s.points, new Date().toISOString()]);
-  });
-  return jsonResponse({success: true});
-}
-
-function addMatch(data) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = ss.getSheetByName('Matches');
-  if (!sheet) { sheet = ss.insertSheet('Matches'); sheet.appendRow(['MatchNum','Name','Date']); }
-  sheet.appendRow([data.matchNum, data.name, data.date]);
-  return jsonResponse({success: true});
-}
-
-function sheetToArray(sheet) {
-  if (!sheet) return [];
-  const data = sheet.getDataRange().getValues();
-  if (data.length < 2) return [];
-  const headers = data[0];
-  return data.slice(1).map(row => {
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = row[i]);
-    return obj;
-  });
-}
-
-function jsonResponse(data) {
-  return ContentService.createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-      </button>
-      <button class="copy-btn" onclick="copyCode()">Copy</button>
-    </div>
-    </div>
-
-    <div class="step">
-      <div class="step-header"><span class="step-num">3</span><span class="step-title">Connect to this app</span></div>
-      <p>Paste your Apps Script deployment URL below:</p>
-      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-        <input type="text" id="setupScriptUrl" placeholder="https://script.google.com/macros/s/.../exec" style="flex:1;min-width:200px;padding:8px 12px;background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:'Exo 2',sans-serif"/>
-        <button class="btn btn-gold" onclick="saveFromSetup()">Connect & Test</button>
-      </div>
-      <div id="setupStatus" style="margin-top:8px;font-size:12px;color:var(--muted)"></div>
-    </div>
-
-    <div class="step">
-      <div class="step-header"><span class="step-num">4</span><span class="step-title">Admin PIN</span></div>
-      <p>Your default admin PIN is <strong style="color:var(--gold)">2026</strong>. Change it in the Admin panel after logging in.</p>
-    </div>
-
-  </div>
-</div>
 
 <script>
 // ══════════════════════════════════════════
@@ -480,20 +300,17 @@ function jsonResponse(data) {
 // ══════════════════════════════════════════
 let state = {
   players: [],
-  scores: [],   // [{name, match, points, date}]
-  matches: [],  // [{num, name, date}]
+  scores: [],
+  matches: [],
   activeMatch: 'all',
-  scriptUrl: '',
   pin: '2026',
-  adminUnlocked: false,
-  connected: false
+  adminUnlocked: false
 };
 
 // ══════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════
 function init() {
-  // Load persisted state
   const saved = localStorage.getItem('ipl_state');
   if (saved) {
     try {
@@ -502,21 +319,10 @@ function init() {
       state.scores  = s.scores  || [];
       state.matches = s.matches || [];
       state.pin     = s.pin     || '2026';
-      state.scriptUrl = s.scriptUrl || '';
     } catch(e) {}
   }
-
-  // Seed with existing data if empty
   if (state.players.length === 0) seedData();
-
-  // Check if script URL configured
-  if (state.scriptUrl) {
-    document.getElementById('configBanner').classList.add('hidden');
-    loadData();
-  } else {
-    setSyncStatus('offline', 'Not connected to Google Sheets');
-    renderAll();
-  }
+  renderAll();
 }
 
 function seedData() {
@@ -746,7 +552,7 @@ function saveScores() {
   });
   persist();
   renderLeaderboard();
-  toast('Scores saved locally! Click "Save to Sheets" to sync.', 'success');
+  toast('Scores saved!', 'success');
 }
 
 function addPlayer() {
@@ -869,53 +675,12 @@ function showPage(id) {
 }
 
 // ══════════════════════════════════════════
-//  SYNC STATUS
-// ══════════════════════════════════════════
-function setSyncStatus(type, msg) {
-  const dot = document.getElementById('syncDot');
-  dot.className = 'sync-dot ' + type;
-  document.getElementById('syncStatus').textContent = msg;
-}
-
-// ══════════════════════════════════════════
-//  SCRIPT URL / CONFIG
-// ══════════════════════════════════════════
-function saveScriptUrl() {
-  const url = document.getElementById('scriptUrlInput').value.trim();
-  if (!url.startsWith('https://script.google.com')) { toast('Please enter a valid Apps Script URL', 'error'); return; }
-  state.scriptUrl = url;
-  persist();
-  document.getElementById('configBanner').classList.add('hidden');
-  loadData();
-  toast('Connected! Fetching data...', 'success');
-}
-
-function saveFromSetup() {
-  const url = document.getElementById('setupScriptUrl').value.trim();
-  if (!url.startsWith('https://script.google.com')) {
-    document.getElementById('setupStatus').textContent='❌ Please enter a valid Apps Script URL';
-    return;
-  }
-  state.scriptUrl = url;
-  persist();
-  document.getElementById('configBanner').classList.add('hidden');
-  document.getElementById('setupStatus').textContent='✅ Connecting...';
-  loadData();
-  toast('Connected!', 'success');
-}
-
-function dismissBanner() {
-  document.getElementById('configBanner').classList.add('hidden');
-  setSyncStatus('offline','Running offline (local data only)');
-}
-
-// ══════════════════════════════════════════
 //  PERSIST
 // ══════════════════════════════════════════
 function persist() {
   localStorage.setItem('ipl_state', JSON.stringify({
     players: state.players, scores: state.scores,
-    matches: state.matches, pin: state.pin, scriptUrl: state.scriptUrl
+    matches: state.matches, pin: state.pin
   }));
 }
 
@@ -927,14 +692,6 @@ function toast(msg, type='info') {
   el.textContent = msg;
   el.className = `toast ${type} show`;
   setTimeout(()=>el.classList.remove('show'), 3000);
-}
-
-// ══════════════════════════════════════════
-//  UTILS
-// ══════════════════════════════════════════
-function copyCode() {
-  navigator.clipboard.writeText(document.getElementById('appsScriptCode').innerText);
-  toast('Code copied!', 'success');
 }
 
 // BOOT
