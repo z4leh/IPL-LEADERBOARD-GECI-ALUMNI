@@ -312,7 +312,7 @@ let state = {
 //  VERSION — bump this when uploading new data
 //  e.g. "v3" → everyone gets fresh data automatically
 // ══════════════════════════════════════════
-const DATA_VERSION = "v10";
+const DATA_VERSION = "v11";
 
 // ══════════════════════════════════════════
 //  INIT
@@ -353,7 +353,8 @@ function seedData() {
     {name:"Jisa",batch:2010,phone:""},{name:"Livin",batch:2012,phone:""},
     {name:"Lukeman",batch:2007,phone:""},{name:"Midhun Das",batch:2009,phone:""},
     {name:"Mohamed Shafeeh",batch:2019,phone:""},{name:"Muhammed Fayis",batch:2015,phone:""},
-    {name:"Nikhil Padikkal",batch:2008,phone:""},{name:"RAKESH",batch:2019,phone:""},
+    {name:"Nikhil Padikkal",batch:2008,phone:""},{name:"Niyas V",batch:2005,phone:""},
+    {name:"RAKESH",batch:2019,phone:""},
     {name:"Rijesh",batch:2010,phone:""},{name:"Sakhin",batch:2011,phone:""},
     {name:"Sameer",batch:2006,phone:""},{name:"Shafina",batch:2005,phone:""},
     {name:"Shahsad",batch:2014,phone:""},{name:"Shakir",batch:2019,phone:""},
@@ -368,6 +369,7 @@ function seedData() {
     {num:2,name:"RR vs CSK",date:"2026-03-30"},
     {num:3,name:"PBKS vs GT",date:"2026-03-31"},
     {num:4,name:"DC vs LSG",date:"2026-04-01"},
+    {num:5,name:"Match 5",date:"2026-04-03"},
   ];
   state.scores = [
     // MI vs KKR
@@ -391,6 +393,7 @@ function seedData() {
     {name:"Ameena Shahul",match:"MI vs KKR",points:0},{name:"Midhun Das",match:"MI vs KKR",points:0},
     {name:"Anjaz",match:"MI vs KKR",points:0},{name:"Livin",match:"MI vs KKR",points:0},
     {name:"Sirajudheen",match:"MI vs KKR",points:0},{name:"Rijesh",match:"MI vs KKR",points:0},
+    {name:"Niyas V",match:"MI vs KKR",points:0},
     // RR vs CSK
     {name:"Jashir",match:"RR vs CSK",points:6},{name:"Shibil Jaleel",match:"RR vs CSK",points:5},
     {name:"RAKESH",match:"RR vs CSK",points:4},{name:"Vipin K V",match:"RR vs CSK",points:4},
@@ -412,6 +415,7 @@ function seedData() {
     {name:"Midhun Das",match:"RR vs CSK",points:0},{name:"Shameer",match:"RR vs CSK",points:0},
     {name:"Anjaz",match:"RR vs CSK",points:0},{name:"Livin",match:"RR vs CSK",points:0},
     {name:"Sirajudheen",match:"RR vs CSK",points:0},{name:"Rijesh",match:"RR vs CSK",points:0},
+    {name:"Niyas V",match:"RR vs CSK",points:0},
     // PBKS vs GT
     {name:"Mohamed Shafeeh",match:"PBKS vs GT",points:7},{name:"Arun Kumar",match:"PBKS vs GT",points:7},
     {name:"Sakhin",match:"PBKS vs GT",points:7},{name:"Midhun Das",match:"PBKS vs GT",points:7},
@@ -433,6 +437,7 @@ function seedData() {
     {name:"ARJUN R G",match:"PBKS vs GT",points:0},{name:"Benax Arjunan",match:"PBKS vs GT",points:0},
     {name:"Swathy Vinod",match:"PBKS vs GT",points:0},{name:"Akshay",match:"PBKS vs GT",points:0},
     {name:"Shameer",match:"PBKS vs GT",points:0},{name:"Rijesh",match:"PBKS vs GT",points:0},
+    {name:"Niyas V",match:"PBKS vs GT",points:0},
     // DC vs LSG
     {name:"Shahsad",match:"DC vs LSG",points:8},{name:"Vipin K V",match:"DC vs LSG",points:8},
     {name:"Jashir",match:"DC vs LSG",points:5},{name:"Sakhin",match:"DC vs LSG",points:5},
@@ -449,12 +454,34 @@ function seedData() {
     {name:"Asif Ali T",match:"DC vs LSG",points:0},{name:"Balagovind",match:"DC vs LSG",points:0},
     {name:"Benax Arjunan",match:"DC vs LSG",points:0},{name:"Livin",match:"DC vs LSG",points:0},
     {name:"Midhun Das",match:"DC vs LSG",points:0},{name:"Mohamed Shafeeh",match:"DC vs LSG",points:0},
-    {name:"Nikhil Padikkal",match:"DC vs LSG",points:0},{name:"Rijesh",match:"DC vs LSG",points:0},
-    {name:"Sameer",match:"DC vs LSG",points:0},{name:"Shafina",match:"DC vs LSG",points:0},
-    {name:"Shameer",match:"DC vs LSG",points:0},{name:"Shamna",match:"DC vs LSG",points:0},
-    {name:"Sirajudheen",match:"DC vs LSG",points:0},{name:"Sooraj Sukumaran",match:"DC vs LSG",points:0},
-    {name:"Sumayya",match:"DC vs LSG",points:0},{name:"Swathy Vinod",match:"DC vs LSG",points:0},
-    {name:"VISHNU",match:"DC vs LSG",points:0},
+    {name:"Nikhil Padikkal",match:"DC vs LSG",points:0},{name:"Niyas V",match:"DC vs LSG",points:0},
+    {name:"Rijesh",match:"DC vs LSG",points:0},{name:"Sameer",match:"DC vs LSG",points:0},
+    {name:"Shafina",match:"DC vs LSG",points:0},{name:"Shameer",match:"DC vs LSG",points:0},
+    {name:"Shamna",match:"DC vs LSG",points:0},{name:"Sirajudheen",match:"DC vs LSG",points:0},
+    {name:"Sooraj Sukumaran",match:"DC vs LSG",points:0},{name:"Sumayya",match:"DC vs LSG",points:0},
+    {name:"Swathy Vinod",match:"DC vs LSG",points:0},{name:"VISHNU",match:"DC vs LSG",points:0},
+    // Match 5
+    {name:"Shahsad",match:"Match 5",points:7},{name:"Jashir",match:"Match 5",points:5},
+    {name:"Sakhin",match:"Match 5",points:5},{name:"Anwar",match:"Match 5",points:5},
+    {name:"Lukeman",match:"Match 5",points:5},{name:"Sumayya",match:"Match 5",points:5},
+    {name:"Vipin K V",match:"Match 5",points:5},{name:"Jasil",match:"Match 5",points:6},
+    {name:"Ameena Shahul",match:"Match 5",points:3},{name:"Aneesh Salimkumat",match:"Match 5",points:3},
+    {name:"Muhammed Fayis",match:"Match 5",points:3},{name:"Nikhil Padikkal",match:"Match 5",points:3},
+    {name:"Rijesh",match:"Match 5",points:3},{name:"Arun Kumar",match:"Match 5",points:2},
+    {name:"Bilesh",match:"Match 5",points:2},{name:"Midhun Das",match:"Match 5",points:2},
+    {name:"Shafina",match:"Match 5",points:2},{name:"Shakir",match:"Match 5",points:2},
+    {name:"Sirajudheen",match:"Match 5",points:2},{name:"Sooraj Sukumaran",match:"Match 5",points:2},
+    {name:"Ajmal KA",match:"Match 5",points:0},{name:"Akshay",match:"Match 5",points:0},
+    {name:"Amal Thankachan",match:"Match 5",points:0},{name:"Anjaz",match:"Match 5",points:0},
+    {name:"ARJUN R G",match:"Match 5",points:0},{name:"Asif Ali T",match:"Match 5",points:0},
+    {name:"Balagovind",match:"Match 5",points:0},{name:"Benax Arjunan",match:"Match 5",points:0},
+    {name:"Fayiz Hashim",match:"Match 5",points:0},{name:"Jisa",match:"Match 5",points:0},
+    {name:"Livin",match:"Match 5",points:0},{name:"Mohamed Shafeeh",match:"Match 5",points:0},
+    {name:"Niyas V",match:"Match 5",points:0},{name:"RAKESH",match:"Match 5",points:0},
+    {name:"Sameer",match:"Match 5",points:0},{name:"Shameer",match:"Match 5",points:0},
+    {name:"Shamna",match:"Match 5",points:0},{name:"Shibil Jaleel",match:"Match 5",points:0},
+    {name:"Sudheesh Sudhakaran",match:"Match 5",points:0},{name:"Sumayya",match:"Match 5",points:0},
+    {name:"Swathy Vinod",match:"Match 5",points:0},{name:"VISHNU",match:"Match 5",points:0},
   ];
   persist();
 }
