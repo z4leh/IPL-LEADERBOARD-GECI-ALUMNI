@@ -46,8 +46,12 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
 .subtitle{font-size:13px;color:var(--muted);margin-top:4px}
 
 /* ── MATCH SELECTOR ── */
-.match-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.match-tab{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--card2);color:var(--muted);transition:all .15s}
+.match-tabs-wrap{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.match-tabs-overall{padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--card2);color:var(--muted);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.match-tabs-overall.active{background:var(--gold);color:#1A1200;border-color:var(--gold)}
+.match-tabs-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none}
+.match-tabs-scroll::-webkit-scrollbar{display:none}
+.match-tab{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--card2);color:var(--muted);transition:all .15s;white-space:nowrap;flex-shrink:0}
 .match-tab.active{background:var(--gold);color:#1A1200;border-color:var(--gold)}
 .match-tab:hover:not(.active){border-color:var(--muted);color:var(--text)}
 
@@ -195,8 +199,10 @@ html,body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-seri
     <div class="subtitle" id="lb-subtitle">Loading...</div>
   </div>
 
-  <!-- Match tabs -->
-  <div class="match-tabs" id="matchTabs"></div>
+  <div class="match-tabs-wrap">
+    <div class="match-tabs-overall" id="overallTab" onclick="setMatch('all')">🏆 Overall</div>
+    <div class="match-tabs-scroll" id="matchTabs"></div>
+  </div>
 
   <!-- Podium -->
   <div class="podium" id="podium"></div>
@@ -312,7 +318,7 @@ let state = {
 //  VERSION — bump this when uploading new data
 //  e.g. "v3" → everyone gets fresh data automatically
 // ══════════════════════════════════════════
-const DATA_VERSION = "v18";
+const DATA_VERSION = "v19";
 
 // ══════════════════════════════════════════
 //  INIT
@@ -342,7 +348,7 @@ function init() {
 
 function seedData() {
   state.players = [
-    {name:"Ajmal",batch:2017,phone:""},{name:"Ajmal KA",batch:2004,phone:""},{name:"Amal Thankachan",batch:2017,phone:""},
+    {name:"Abin",batch:2019,phone:""},{name:"Ajmal",batch:2017,phone:""},{name:"Ajmal KA",batch:2004,phone:""},{name:"Amal Thankachan",batch:2017,phone:""},
     {name:"Ameena Shahul",batch:2015,phone:""},{name:"Aneesh Salimkumat",batch:2009,phone:""},
     {name:"Anjaz",batch:2007,phone:""},{name:"Anwar",batch:2008,phone:""},
     {name:"ARJUN R G",batch:2022,phone:""},{name:"Arun Kumar",batch:2014,phone:""},
@@ -375,6 +381,7 @@ function seedData() {
     {num:8,name:"RR vs GT",date:"2026-04-06"},
     {num:9,name:"SRH vs LSG",date:"2026-04-07"},
     {num:10,name:"CSK vs RCB",date:"2026-04-08"},
+    {num:11,name:"KKR vs PBKS",date:"2026-04-09"},
   ];
   state.scores = [
     // MI vs KKR
@@ -387,7 +394,7 @@ function seedData() {
     {name:"Shamna",match:"MI vs KKR",points:4},{name:"Sooraj Sukumaran",match:"MI vs KKR",points:4},
     {name:"Swathy Vinod",match:"MI vs KKR",points:4},{name:"RAKESH",match:"MI vs KKR",points:3},
     {name:"Sumayya",match:"MI vs KKR",points:3},{name:"VISHNU",match:"MI vs KKR",points:3},
-    {name:"Ajmal",match:"MI vs KKR",points:0},{name:"Nirmal Nandakumar",match:"MI vs KKR",points:0},{name:"Yasir",match:"MI vs KKR",points:0},
+    {name:"Ajmal",match:"MI vs KKR",points:0},{name:"Nirmal Nandakumar",match:"MI vs KKR",points:0},{name:"Abin",match:"MI vs KKR",points:0},{name:"Yasir",match:"MI vs KKR",points:0},
     {name:"Aneesh Salimkumat",match:"MI vs KKR",points:2},{name:"Balagovind",match:"MI vs KKR",points:2},
     {name:"Fayiz Hashim",match:"MI vs KKR",points:2},{name:"Shibil Jaleel",match:"MI vs KKR",points:2},
     {name:"Vipin K V",match:"MI vs KKR",points:2},{name:"ARJUN R G",match:"MI vs KKR",points:2},
@@ -412,7 +419,7 @@ function seedData() {
     {name:"Amal Thankachan",match:"RR vs CSK",points:0},{name:"Arun Kumar",match:"RR vs CSK",points:0},
     {name:"Jasil",match:"RR vs CSK",points:0},{name:"Lukeman",match:"RR vs CSK",points:0},
     {name:"Shakir",match:"RR vs CSK",points:0},{name:"Shamna",match:"RR vs CSK",points:0},
-    {name:"Sumayya",match:"RR vs CSK",points:0},{name:"VISHNU",match:"RR vs CSK",points:0},{name:"Ajmal",match:"RR vs CSK",points:0},{name:"Nirmal Nandakumar",match:"RR vs CSK",points:0},{name:"Yasir",match:"RR vs CSK",points:0},
+    {name:"Sumayya",match:"RR vs CSK",points:0},{name:"VISHNU",match:"RR vs CSK",points:0},{name:"Ajmal",match:"RR vs CSK",points:0},{name:"Nirmal Nandakumar",match:"RR vs CSK",points:0},{name:"Abin",match:"RR vs CSK",points:0},{name:"Yasir",match:"RR vs CSK",points:0},
     {name:"Aneesh Salimkumat",match:"RR vs CSK",points:0},{name:"Balagovind",match:"RR vs CSK",points:0},
     {name:"Fayiz Hashim",match:"RR vs CSK",points:0},{name:"ARJUN R G",match:"RR vs CSK",points:0},
     {name:"Benax Arjunan",match:"RR vs CSK",points:0},{name:"Muhammed Fayis",match:"RR vs CSK",points:0},
@@ -438,7 +445,7 @@ function seedData() {
     {name:"Amal Thankachan",match:"PBKS vs GT",points:2},{name:"Shahsad",match:"PBKS vs GT",points:5},
     {name:"Asif Ali T",match:"PBKS vs GT",points:0},{name:"Nikhil Padikkal",match:"PBKS vs GT",points:0},
     {name:"Ajmal KA",match:"PBKS vs GT",points:0},{name:"Jasil",match:"PBKS vs GT",points:0},
-    {name:"Shamna",match:"PBKS vs GT",points:0},{name:"VISHNU",match:"PBKS vs GT",points:0},{name:"Ajmal",match:"PBKS vs GT",points:0},{name:"Nirmal Nandakumar",match:"PBKS vs GT",points:0},{name:"Yasir",match:"PBKS vs GT",points:0},
+    {name:"Shamna",match:"PBKS vs GT",points:0},{name:"VISHNU",match:"PBKS vs GT",points:0},{name:"Ajmal",match:"PBKS vs GT",points:0},{name:"Nirmal Nandakumar",match:"PBKS vs GT",points:0},{name:"Abin",match:"PBKS vs GT",points:0},{name:"Yasir",match:"PBKS vs GT",points:0},
     {name:"Aneesh Salimkumat",match:"PBKS vs GT",points:0},{name:"Balagovind",match:"PBKS vs GT",points:0},
     {name:"ARJUN R G",match:"PBKS vs GT",points:0},{name:"Benax Arjunan",match:"PBKS vs GT",points:0},
     {name:"Swathy Vinod",match:"PBKS vs GT",points:0},{name:"Akshay",match:"PBKS vs GT",points:0},
@@ -465,7 +472,7 @@ function seedData() {
     {name:"Shafina",match:"DC vs LSG",points:0},{name:"Shameer",match:"DC vs LSG",points:0},
     {name:"Shamna",match:"DC vs LSG",points:0},{name:"Sirajudheen",match:"DC vs LSG",points:0},
     {name:"Sooraj Sukumaran",match:"DC vs LSG",points:0},{name:"Sumayya",match:"DC vs LSG",points:0},
-    {name:"Swathy Vinod",match:"DC vs LSG",points:0},{name:"VISHNU",match:"DC vs LSG",points:0},{name:"Ajmal",match:"DC vs LSG",points:0},{name:"Nirmal Nandakumar",match:"DC vs LSG",points:0},{name:"Yasir",match:"DC vs LSG",points:0},
+    {name:"Swathy Vinod",match:"DC vs LSG",points:0},{name:"VISHNU",match:"DC vs LSG",points:0},{name:"Ajmal",match:"DC vs LSG",points:0},{name:"Nirmal Nandakumar",match:"DC vs LSG",points:0},{name:"Abin",match:"DC vs LSG",points:0},{name:"Yasir",match:"DC vs LSG",points:0},
     // SRH vs KKR
     {name:"Shahsad",match:"SRH vs KKR",points:7},{name:"Jashir",match:"SRH vs KKR",points:5},
     {name:"Sakhin",match:"SRH vs KKR",points:5},{name:"Anwar",match:"SRH vs KKR",points:5},
@@ -487,7 +494,7 @@ function seedData() {
     {name:"Sameer",match:"SRH vs KKR",points:0},{name:"Shameer",match:"SRH vs KKR",points:0},
     {name:"Shamna",match:"SRH vs KKR",points:0},{name:"Shibil Jaleel",match:"SRH vs KKR",points:0},
     {name:"Sudheesh Sudhakaran",match:"SRH vs KKR",points:4},{name:"Sumayya",match:"SRH vs KKR",points:0},
-    {name:"Swathy Vinod",match:"SRH vs KKR",points:0},{name:"VISHNU",match:"SRH vs KKR",points:0},{name:"Ajmal",match:"SRH vs KKR",points:0},{name:"Nirmal Nandakumar",match:"SRH vs KKR",points:0},{name:"Yasir",match:"SRH vs KKR",points:0},
+    {name:"Swathy Vinod",match:"SRH vs KKR",points:0},{name:"VISHNU",match:"SRH vs KKR",points:0},{name:"Ajmal",match:"SRH vs KKR",points:0},{name:"Nirmal Nandakumar",match:"SRH vs KKR",points:0},{name:"Abin",match:"SRH vs KKR",points:0},{name:"Yasir",match:"SRH vs KKR",points:0},
     // CSK vs PBKS
     {name:"Niyas V",match:"CSK vs PBKS",points:7},{name:"Sudheesh Sudhakaran",match:"CSK vs PBKS",points:7},
     {name:"Ameena Shahul",match:"CSK vs PBKS",points:5},{name:"Livin",match:"CSK vs PBKS",points:5},
@@ -510,7 +517,7 @@ function seedData() {
     {name:"Shahsad",match:"CSK vs PBKS",points:0},{name:"Shamna",match:"CSK vs PBKS",points:0},
     {name:"Shibil Jaleel",match:"CSK vs PBKS",points:0},{name:"Sirajudheen",match:"CSK vs PBKS",points:0},
     {name:"Sooraj Sukumaran",match:"CSK vs PBKS",points:0},{name:"Sumayya",match:"CSK vs PBKS",points:0},
-    {name:"VISHNU",match:"CSK vs PBKS",points:0},{name:"Ajmal",match:"CSK vs PBKS",points:0},{name:"Nirmal Nandakumar",match:"CSK vs PBKS",points:0},{name:"Yasir",match:"CSK vs PBKS",points:0},
+    {name:"VISHNU",match:"CSK vs PBKS",points:0},{name:"Ajmal",match:"CSK vs PBKS",points:0},{name:"Nirmal Nandakumar",match:"CSK vs PBKS",points:0},{name:"Abin",match:"CSK vs PBKS",points:0},{name:"Yasir",match:"CSK vs PBKS",points:0},
     // DC vs MI
     {name:"ARJUN R G",match:"DC vs MI",points:0},{name:"Ajmal",match:"DC vs MI",points:2},{name:"Ajmal KA",match:"DC vs MI",points:0},{name:"Akshay",match:"DC vs MI",points:0},
     {name:"Amal Thankachan",match:"DC vs MI",points:5},{name:"Ameena Shahul",match:"DC vs MI",points:2},{name:"Aneesh Salimkumat",match:"DC vs MI",points:0},{name:"Anjaz",match:"DC vs MI",points:5},
@@ -523,7 +530,7 @@ function seedData() {
     {name:"Shahsad",match:"DC vs MI",points:0},{name:"Shakir",match:"DC vs MI",points:2},{name:"Shameer",match:"DC vs MI",points:2},{name:"Shamna",match:"DC vs MI",points:0},
     {name:"Shibil Jaleel",match:"DC vs MI",points:0},{name:"Sirajudheen",match:"DC vs MI",points:4},{name:"Sooraj Sukumaran",match:"DC vs MI",points:5},{name:"Sudheesh Sudhakaran",match:"DC vs MI",points:5},
     {name:"Sumayya",match:"DC vs MI",points:0},{name:"Swathy Vinod",match:"DC vs MI",points:0},{name:"VISHNU",match:"DC vs MI",points:0},{name:"Vipin K V",match:"DC vs MI",points:2},
-    {name:"Yasir",match:"DC vs MI",points:0},
+    {name:"Abin",match:"DC vs MI",points:0},{name:"Yasir",match:"DC vs MI",points:0},
 
     // RR vs GT
     {name:"ARJUN R G",match:"RR vs GT",points:0},{name:"Ajmal",match:"RR vs GT",points:0},{name:"Ajmal KA",match:"RR vs GT",points:0},{name:"Akshay",match:"RR vs GT",points:0},
@@ -537,7 +544,7 @@ function seedData() {
     {name:"Shahsad",match:"RR vs GT",points:4},{name:"Shakir",match:"RR vs GT",points:4},{name:"Shameer",match:"RR vs GT",points:0},{name:"Shamna",match:"RR vs GT",points:0},
     {name:"Shibil Jaleel",match:"RR vs GT",points:2},{name:"Sirajudheen",match:"RR vs GT",points:0},{name:"Sooraj Sukumaran",match:"RR vs GT",points:4},{name:"Sudheesh Sudhakaran",match:"RR vs GT",points:2},
     {name:"Sumayya",match:"RR vs GT",points:2},{name:"Swathy Vinod",match:"RR vs GT",points:4},{name:"VISHNU",match:"RR vs GT",points:0},{name:"Vipin K V",match:"RR vs GT",points:7},
-    {name:"Yasir",match:"RR vs GT",points:5},
+    {name:"Yasir",match:"RR vs GT",points:5},{name:"Abin",match:"RR vs GT",points:0},
 
     // SRH vs LSG
     {name:"ARJUN R G",match:"SRH vs LSG",points:0},{name:"Ajmal",match:"SRH vs LSG",points:2},{name:"Ajmal KA",match:"SRH vs LSG",points:0},{name:"Akshay",match:"SRH vs LSG",points:0},
@@ -551,7 +558,7 @@ function seedData() {
     {name:"Shahsad",match:"SRH vs LSG",points:0},{name:"Shakir",match:"SRH vs LSG",points:2},{name:"Shameer",match:"SRH vs LSG",points:5},{name:"Shamna",match:"SRH vs LSG",points:0},
     {name:"Shibil Jaleel",match:"SRH vs LSG",points:0},{name:"Sirajudheen",match:"SRH vs LSG",points:5},{name:"Sooraj Sukumaran",match:"SRH vs LSG",points:2},{name:"Sudheesh Sudhakaran",match:"SRH vs LSG",points:2},
     {name:"Sumayya",match:"SRH vs LSG",points:0},{name:"Swathy Vinod",match:"SRH vs LSG",points:0},{name:"VISHNU",match:"SRH vs LSG",points:0},{name:"Vipin K V",match:"SRH vs LSG",points:2},
-    {name:"Yasir",match:"SRH vs LSG",points:0},
+    {name:"Abin",match:"SRH vs LSG",points:0},{name:"Yasir",match:"SRH vs LSG",points:0},
 
     // CSK vs RCB
     {name:"ARJUN R G",match:"CSK vs RCB",points:0},{name:"Ajmal",match:"CSK vs RCB",points:0},{name:"Ajmal KA",match:"CSK vs RCB",points:0},{name:"Akshay",match:"CSK vs RCB",points:0},
@@ -565,7 +572,20 @@ function seedData() {
     {name:"Shahsad",match:"CSK vs RCB",points:5},{name:"Shakir",match:"CSK vs RCB",points:4},{name:"Shameer",match:"CSK vs RCB",points:0},{name:"Shamna",match:"CSK vs RCB",points:0},
     {name:"Shibil Jaleel",match:"CSK vs RCB",points:5},{name:"Sirajudheen",match:"CSK vs RCB",points:5},{name:"Sooraj Sukumaran",match:"CSK vs RCB",points:0},{name:"Sudheesh Sudhakaran",match:"CSK vs RCB",points:7},
     {name:"Sumayya",match:"CSK vs RCB",points:5},{name:"Swathy Vinod",match:"CSK vs RCB",points:0},{name:"VISHNU",match:"CSK vs RCB",points:0},{name:"Vipin K V",match:"CSK vs RCB",points:5},
-    {name:"Yasir",match:"CSK vs RCB",points:0},
+    {name:"Abin",match:"CSK vs RCB",points:0},{name:"Yasir",match:"CSK vs RCB",points:0},
+    // KKR vs PBKS
+    {name:"ARJUN R G",match:"KKR vs PBKS",points:0},{name:"Abin",match:"KKR vs PBKS",points:5},{name:"Ajmal",match:"KKR vs PBKS",points:0},{name:"Ajmal KA",match:"KKR vs PBKS",points:0},
+    {name:"Akshay",match:"KKR vs PBKS",points:0},{name:"Amal Thankachan",match:"KKR vs PBKS",points:3},{name:"Ameena Shahul",match:"KKR vs PBKS",points:3},{name:"Aneesh Salimkumat",match:"KKR vs PBKS",points:0},
+    {name:"Anjaz",match:"KKR vs PBKS",points:5},{name:"Anwar",match:"KKR vs PBKS",points:0},{name:"Arun Kumar",match:"KKR vs PBKS",points:3},{name:"Asif Ali T",match:"KKR vs PBKS",points:5},
+    {name:"Balagovind",match:"KKR vs PBKS",points:0},{name:"Benax Arjunan",match:"KKR vs PBKS",points:0},{name:"Bilesh",match:"KKR vs PBKS",points:5},{name:"Fayiz Hashim",match:"KKR vs PBKS",points:3},
+    {name:"Fuhad",match:"KKR vs PBKS",points:5},{name:"Jashir",match:"KKR vs PBKS",points:3},{name:"Jasil",match:"KKR vs PBKS",points:3},{name:"Jisa",match:"KKR vs PBKS",points:5},
+    {name:"Livin",match:"KKR vs PBKS",points:0},{name:"Lukeman",match:"KKR vs PBKS",points:5},{name:"Midhun Das",match:"KKR vs PBKS",points:3},{name:"Mohamed Shafeeh",match:"KKR vs PBKS",points:0},
+    {name:"Muhammed Fayis",match:"KKR vs PBKS",points:3},{name:"Nikhil Padikkal",match:"KKR vs PBKS",points:3},{name:"Nirmal Nandakumar",match:"KKR vs PBKS",points:0},{name:"Niyas V",match:"KKR vs PBKS",points:3},
+    {name:"RAKESH",match:"KKR vs PBKS",points:5},{name:"Rijesh",match:"KKR vs PBKS",points:5},{name:"Sakhin",match:"KKR vs PBKS",points:5},{name:"Sameer",match:"KKR vs PBKS",points:0},
+    {name:"Shafina",match:"KKR vs PBKS",points:5},{name:"Shahsad",match:"KKR vs PBKS",points:3},{name:"Shakir",match:"KKR vs PBKS",points:3},{name:"Shameer",match:"KKR vs PBKS",points:0},
+    {name:"Shamna",match:"KKR vs PBKS",points:0},{name:"Shibil Jaleel",match:"KKR vs PBKS",points:0},{name:"Sirajudheen",match:"KKR vs PBKS",points:5},{name:"Sooraj Sukumaran",match:"KKR vs PBKS",points:3},
+    {name:"Sudheesh Sudhakaran",match:"KKR vs PBKS",points:5},{name:"Sumayya",match:"KKR vs PBKS",points:0},{name:"Swathy Vinod",match:"KKR vs PBKS",points:5},{name:"VISHNU",match:"KKR vs PBKS",points:0},
+    {name:"Vipin K V",match:"KKR vs PBKS",points:5},{name:"Yasir",match:"KKR vs PBKS",points:0},
 
   ];
   persist();
@@ -631,9 +651,10 @@ function renderAll() {
 }
 
 function renderMatchTabs() {
-  const el = document.getElementById('matchTabs');
-  const tabs = [{id:'all',label:'🏆 Overall'},...state.matches.map(m=>({id:m.name,label:`M${m.num}: ${m.name}`}))];
-  el.innerHTML = tabs.map(t=>`<div class="match-tab ${state.activeMatch===t.id?'active':''}" onclick="setMatch('${t.id}')">${t.label}</div>`).join('');
+  const overallEl = document.getElementById('overallTab');
+  const scrollEl  = document.getElementById('matchTabs');
+  overallEl.className = 'match-tabs-overall' + (state.activeMatch==='all' ? ' active' : '');
+  scrollEl.innerHTML = state.matches.map(m=>`<div class="match-tab ${state.activeMatch===m.name?'active':''}" onclick="setMatch('${m.name}')">M${m.num}: ${m.name}</div>`).join('');
 }
 
 function setMatch(id) {
