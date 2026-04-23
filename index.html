@@ -318,7 +318,7 @@ let state = {
 //  VERSION — bump this when uploading new data
 //  e.g. "v3" → everyone gets fresh data automatically
 // ══════════════════════════════════════════
-const DATA_VERSION = "v35";
+const DATA_VERSION = "v36";
 
 // ══════════════════════════════════════════
 //  INIT
@@ -402,6 +402,7 @@ function seedData() {
     {num:29,name:"GT vs MI",date:"2026-04-22"},
     {num:30,name:"DC vs SRH",date:"2026-04-23"},
     {num:31,name:"RR vs LSG",date:"2026-04-24"},
+    {num:32,name:"MI vs CSK",date:"2026-04-25"},
   ];
   state.scores = [
     // MI vs KKR
@@ -897,7 +898,22 @@ function seedData() {
     {name:"Shabid Karimbanakkal",match:"RR vs LSG",points:0},{name:"Shafina",match:"RR vs LSG",points:4},{name:"Shahsad",match:"RR vs LSG",points:0},{name:"Shakir",match:"RR vs LSG",points:6},
     {name:"Shameer",match:"RR vs LSG",points:4},{name:"Shamna",match:"RR vs LSG",points:0},{name:"Shibil Jaleel",match:"RR vs LSG",points:0},{name:"Sirajudheen",match:"RR vs LSG",points:4},
     {name:"Sooraj Sukumaran",match:"RR vs LSG",points:2},{name:"Sudheesh Sudhakaran",match:"RR vs LSG",points:2},{name:"Sumayya",match:"RR vs LSG",points:0},{name:"Swathy Vinod",match:"RR vs LSG",points:2},
-    {name:"VISHNU",match:"RR vs LSG",points:0},{name:"Vipin K V",match:"RR vs LSG",points:2},{name:"Vishal",match:"RR vs LSG",points:4},{name:"Yasir",match:"RR vs LSG",points:0},{name:"Navven",match:"KKR vs PBKS",points:0},{name:"Nishad",match:"KKR vs PBKS",points:0},{name:"Alfas U",match:"KKR vs PBKS",points:0},{name:"Adil",match:"KKR vs PBKS",points:0},
+    {name:"VISHNU",match:"RR vs LSG",points:0},{name:"Vipin K V",match:"RR vs LSG",points:2},{name:"Vishal",match:"RR vs LSG",points:4},{name:"Yasir",match:"RR vs LSG",points:0},
+    // MI vs CSK
+    {name:"ARJUN R G",match:"MI vs CSK",points:0},{name:"Abin",match:"MI vs CSK",points:6},{name:"Adil",match:"MI vs CSK",points:0},{name:"Ajmal",match:"MI vs CSK",points:0},
+    {name:"Ajmal KA",match:"MI vs CSK",points:0},{name:"Akshay",match:"MI vs CSK",points:0},{name:"Alfas U",match:"MI vs CSK",points:0},{name:"Amal Thankachan",match:"MI vs CSK",points:4},
+    {name:"Ameena Shahul",match:"MI vs CSK",points:0},{name:"Aneesh Salimkumat",match:"MI vs CSK",points:0},{name:"Anjaz",match:"MI vs CSK",points:0},{name:"Anwar",match:"MI vs CSK",points:6},
+    {name:"Arun Kumar",match:"MI vs CSK",points:2},{name:"Asif Ali T",match:"MI vs CSK",points:0},{name:"Balagovind",match:"MI vs CSK",points:0},{name:"Benax Arjunan",match:"MI vs CSK",points:0},
+    {name:"Bilesh",match:"MI vs CSK",points:8},{name:"Fayiz Hashim",match:"MI vs CSK",points:0},{name:"Fuhad",match:"MI vs CSK",points:0},{name:"Jashir",match:"MI vs CSK",points:2},
+    {name:"Jasil",match:"MI vs CSK",points:0},{name:"Jisa",match:"MI vs CSK",points:2},{name:"Livin",match:"MI vs CSK",points:4},{name:"Lukeman",match:"MI vs CSK",points:2},
+    {name:"MUHYUDHEEN DHANISH",match:"MI vs CSK",points:4},{name:"Midhun Das",match:"MI vs CSK",points:6},{name:"Mohamed Shafeeh",match:"MI vs CSK",points:0},{name:"Muhammed Fayis",match:"MI vs CSK",points:0},
+    {name:"NIDHIN",match:"MI vs CSK",points:4},{name:"Navven",match:"MI vs CSK",points:0},{name:"Nikhil",match:"MI vs CSK",points:0},{name:"Nikhil Padikkal",match:"MI vs CSK",points:6},
+    {name:"Nirmal Nandakumar",match:"MI vs CSK",points:0},{name:"Nishad",match:"MI vs CSK",points:0},{name:"Niyas V",match:"MI vs CSK",points:4},{name:"RAKESH",match:"MI vs CSK",points:6},
+    {name:"Rijesh",match:"MI vs CSK",points:2},{name:"Sakhin",match:"MI vs CSK",points:0},{name:"Sameer",match:"MI vs CSK",points:0},{name:"Saviyo",match:"MI vs CSK",points:0},
+    {name:"Shabid Karimbanakkal",match:"MI vs CSK",points:2},{name:"Shafina",match:"MI vs CSK",points:8},{name:"Shahsad",match:"MI vs CSK",points:0},{name:"Shakir",match:"MI vs CSK",points:6},
+    {name:"Shameer",match:"MI vs CSK",points:4},{name:"Shamna",match:"MI vs CSK",points:0},{name:"Shibil Jaleel",match:"MI vs CSK",points:0},{name:"Sirajudheen",match:"MI vs CSK",points:6},
+    {name:"Sooraj Sukumaran",match:"MI vs CSK",points:6},{name:"Sudheesh Sudhakaran",match:"MI vs CSK",points:4},{name:"Sumayya",match:"MI vs CSK",points:0},{name:"Swathy Vinod",match:"MI vs CSK",points:0},
+    {name:"VISHNU",match:"MI vs CSK",points:0},{name:"Vipin K V",match:"MI vs CSK",points:2},{name:"Vishal",match:"MI vs CSK",points:8},{name:"Yasir",match:"MI vs CSK",points:0},{name:"Navven",match:"KKR vs PBKS",points:0},{name:"Nishad",match:"KKR vs PBKS",points:0},{name:"Alfas U",match:"KKR vs PBKS",points:0},{name:"Adil",match:"KKR vs PBKS",points:0},
 
   ];
   persist();
