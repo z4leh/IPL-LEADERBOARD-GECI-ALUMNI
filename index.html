@@ -318,7 +318,7 @@ let state = {
 //  VERSION — bump this when uploading new data
 //  e.g. "v3" → everyone gets fresh data automatically
 // ══════════════════════════════════════════
-const DATA_VERSION = "v47";
+const DATA_VERSION = "v49";
 
 // ══════════════════════════════════════════
 //  INIT
@@ -425,6 +425,9 @@ function seedData() {
     {num:52,name:"CSK vs LSG",date:"2026-05-15"},
     {num:53,name:"RCB vs MI",date:"2026-05-16"},
     {num:54,name:"PBKS vs DC",date:"2026-05-17"},
+    {num:55,name:"SRH vs GT",date:"2026-05-18"},
+    {num:56,name:"RCB vs KKR",date:"2026-05-19"},
+    {num:57,name:"PBKS vs MI",date:"2026-05-20"},
   ];
   state.scores = [
     // MI vs KKR
@@ -1265,7 +1268,52 @@ function seedData() {
     {name:"Shabid Karimbanakkal",match:"PBKS vs DC",points:4},{name:"Shafina",match:"PBKS vs DC",points:0},{name:"Shahsad",match:"PBKS vs DC",points:2},{name:"Shakir",match:"PBKS vs DC",points:4},
     {name:"Shameer",match:"PBKS vs DC",points:0},{name:"Shamna",match:"PBKS vs DC",points:0},{name:"Shibil Jaleel",match:"PBKS vs DC",points:0},{name:"Sirajudheen",match:"PBKS vs DC",points:8},
     {name:"Sooraj Sukumaran",match:"PBKS vs DC",points:4},{name:"Sudheesh Sudhakaran",match:"PBKS vs DC",points:2},{name:"Sumayya",match:"PBKS vs DC",points:0},{name:"Swathy Vinod",match:"PBKS vs DC",points:2},
-    {name:"VISHNU",match:"PBKS vs DC",points:0},{name:"Vipin K V",match:"PBKS vs DC",points:4},{name:"Vishal",match:"PBKS vs DC",points:4},{name:"Yasir",match:"PBKS vs DC",points:0},{name:"Navven",match:"KKR vs PBKS",points:0},{name:"Nishad",match:"KKR vs PBKS",points:0},{name:"Alfas U",match:"KKR vs PBKS",points:0},{name:"Adil",match:"KKR vs PBKS",points:0},
+    {name:"VISHNU",match:"PBKS vs DC",points:0},{name:"Vipin K V",match:"PBKS vs DC",points:4},{name:"Vishal",match:"PBKS vs DC",points:4},{name:"Yasir",match:"PBKS vs DC",points:0},
+    // SRH vs GT
+    {name:"ARJUN R G",match:"SRH vs GT",points:0},{name:"Abin",match:"SRH vs GT",points:0},{name:"Adil",match:"SRH vs GT",points:0},{name:"Ajmal",match:"SRH vs GT",points:0},
+    {name:"Ajmal KA",match:"SRH vs GT",points:0},{name:"Akshay",match:"SRH vs GT",points:0},{name:"Alfas U",match:"SRH vs GT",points:0},{name:"Amal Thankachan",match:"SRH vs GT",points:0},
+    {name:"Ameena Shahul",match:"SRH vs GT",points:0},{name:"Aneesh Salimkumat",match:"SRH vs GT",points:0},{name:"Anjaz",match:"SRH vs GT",points:0},{name:"Anwar",match:"SRH vs GT",points:0},
+    {name:"Arun Kumar",match:"SRH vs GT",points:0},{name:"Asif Ali T",match:"SRH vs GT",points:2},{name:"Balagovind",match:"SRH vs GT",points:0},{name:"Benax Arjunan",match:"SRH vs GT",points:0},
+    {name:"Bilesh",match:"SRH vs GT",points:2},{name:"Fayiz Hashim",match:"SRH vs GT",points:0},{name:"Fuhad",match:"SRH vs GT",points:0},{name:"Jashir",match:"SRH vs GT",points:0},
+    {name:"Jasil",match:"SRH vs GT",points:0},{name:"Jisa",match:"SRH vs GT",points:0},{name:"Livin",match:"SRH vs GT",points:0},{name:"Lukeman",match:"SRH vs GT",points:0},
+    {name:"MUHYUDHEEN DHANISH",match:"SRH vs GT",points:0},{name:"Midhun Das",match:"SRH vs GT",points:0},{name:"Mohamed Shafeeh",match:"SRH vs GT",points:0},{name:"Muhammed Fayis",match:"SRH vs GT",points:0},
+    {name:"NIDHIN",match:"SRH vs GT",points:0},{name:"Navven",match:"SRH vs GT",points:0},{name:"Nikhil",match:"SRH vs GT",points:0},{name:"Nikhil Padikkal",match:"SRH vs GT",points:0},
+    {name:"Nirmal Nandakumar",match:"SRH vs GT",points:0},{name:"Nishad",match:"SRH vs GT",points:0},{name:"Niyas V",match:"SRH vs GT",points:0},{name:"RAKESH",match:"SRH vs GT",points:0},
+    {name:"Rijesh",match:"SRH vs GT",points:0},{name:"Sakhin",match:"SRH vs GT",points:0},{name:"Sameer",match:"SRH vs GT",points:0},{name:"Saviyo",match:"SRH vs GT",points:0},
+    {name:"Shabid Karimbanakkal",match:"SRH vs GT",points:0},{name:"Shafina",match:"SRH vs GT",points:0},{name:"Shahsad",match:"SRH vs GT",points:0},{name:"Shakir",match:"SRH vs GT",points:0},
+    {name:"Shameer",match:"SRH vs GT",points:0},{name:"Shamna",match:"SRH vs GT",points:0},{name:"Shibil Jaleel",match:"SRH vs GT",points:0},{name:"Sirajudheen",match:"SRH vs GT",points:0},
+    {name:"Sooraj Sukumaran",match:"SRH vs GT",points:2},{name:"Sudheesh Sudhakaran",match:"SRH vs GT",points:0},{name:"Sumayya",match:"SRH vs GT",points:0},{name:"Swathy Vinod",match:"SRH vs GT",points:0},
+    {name:"VISHNU",match:"SRH vs GT",points:0},{name:"Vipin K V",match:"SRH vs GT",points:0},{name:"Vishal",match:"SRH vs GT",points:0},{name:"Yasir",match:"SRH vs GT",points:0},
+    // RCB vs KKR
+    {name:"ARJUN R G",match:"RCB vs KKR",points:0},{name:"Abin",match:"RCB vs KKR",points:0},{name:"Adil",match:"RCB vs KKR",points:0},{name:"Ajmal",match:"RCB vs KKR",points:0},
+    {name:"Ajmal KA",match:"RCB vs KKR",points:0},{name:"Akshay",match:"RCB vs KKR",points:0},{name:"Alfas U",match:"RCB vs KKR",points:0},{name:"Amal Thankachan",match:"RCB vs KKR",points:6},
+    {name:"Ameena Shahul",match:"RCB vs KKR",points:0},{name:"Aneesh Salimkumat",match:"RCB vs KKR",points:0},{name:"Anjaz",match:"RCB vs KKR",points:0},{name:"Anwar",match:"RCB vs KKR",points:0},
+    {name:"Arun Kumar",match:"RCB vs KKR",points:2},{name:"Asif Ali T",match:"RCB vs KKR",points:6},{name:"Balagovind",match:"RCB vs KKR",points:0},{name:"Benax Arjunan",match:"RCB vs KKR",points:0},
+    {name:"Bilesh",match:"RCB vs KKR",points:2},{name:"Fayiz Hashim",match:"RCB vs KKR",points:0},{name:"Fuhad",match:"RCB vs KKR",points:0},{name:"Jashir",match:"RCB vs KKR",points:6},
+    {name:"Jasil",match:"RCB vs KKR",points:0},{name:"Jisa",match:"RCB vs KKR",points:2},{name:"Livin",match:"RCB vs KKR",points:2},{name:"Lukeman",match:"RCB vs KKR",points:0},
+    {name:"MUHYUDHEEN DHANISH",match:"RCB vs KKR",points:0},{name:"Midhun Das",match:"RCB vs KKR",points:4},{name:"Mohamed Shafeeh",match:"RCB vs KKR",points:0},{name:"Muhammed Fayis",match:"RCB vs KKR",points:4},
+    {name:"NIDHIN",match:"RCB vs KKR",points:2},{name:"Navven",match:"RCB vs KKR",points:0},{name:"Nikhil",match:"RCB vs KKR",points:0},{name:"Nikhil Padikkal",match:"RCB vs KKR",points:4},
+    {name:"Nirmal Nandakumar",match:"RCB vs KKR",points:0},{name:"Nishad",match:"RCB vs KKR",points:0},{name:"Niyas V",match:"RCB vs KKR",points:4},{name:"RAKESH",match:"RCB vs KKR",points:4},
+    {name:"Rijesh",match:"RCB vs KKR",points:6},{name:"Sakhin",match:"RCB vs KKR",points:8},{name:"Sameer",match:"RCB vs KKR",points:2},{name:"Saviyo",match:"RCB vs KKR",points:0},
+    {name:"Shabid Karimbanakkal",match:"RCB vs KKR",points:4},{name:"Shafina",match:"RCB vs KKR",points:2},{name:"Shahsad",match:"RCB vs KKR",points:6},{name:"Shakir",match:"RCB vs KKR",points:4},
+    {name:"Shameer",match:"RCB vs KKR",points:0},{name:"Shamna",match:"RCB vs KKR",points:0},{name:"Shibil Jaleel",match:"RCB vs KKR",points:4},{name:"Sirajudheen",match:"RCB vs KKR",points:0},
+    {name:"Sooraj Sukumaran",match:"RCB vs KKR",points:4},{name:"Sudheesh Sudhakaran",match:"RCB vs KKR",points:0},{name:"Sumayya",match:"RCB vs KKR",points:0},{name:"Swathy Vinod",match:"RCB vs KKR",points:6},
+    {name:"VISHNU",match:"RCB vs KKR",points:0},{name:"Vipin K V",match:"RCB vs KKR",points:4},{name:"Vishal",match:"RCB vs KKR",points:6},{name:"Yasir",match:"RCB vs KKR",points:0},
+    // PBKS vs MI
+    {name:"ARJUN R G",match:"PBKS vs MI",points:0},{name:"Abin",match:"PBKS vs MI",points:4},{name:"Adil",match:"PBKS vs MI",points:0},{name:"Ajmal",match:"PBKS vs MI",points:0},
+    {name:"Ajmal KA",match:"PBKS vs MI",points:0},{name:"Akshay",match:"PBKS vs MI",points:0},{name:"Alfas U",match:"PBKS vs MI",points:0},{name:"Amal Thankachan",match:"PBKS vs MI",points:6},
+    {name:"Ameena Shahul",match:"PBKS vs MI",points:0},{name:"Aneesh Salimkumat",match:"PBKS vs MI",points:0},{name:"Anjaz",match:"PBKS vs MI",points:2},{name:"Anwar",match:"PBKS vs MI",points:0},
+    {name:"Arun Kumar",match:"PBKS vs MI",points:6},{name:"Asif Ali T",match:"PBKS vs MI",points:6},{name:"Balagovind",match:"PBKS vs MI",points:0},{name:"Benax Arjunan",match:"PBKS vs MI",points:0},
+    {name:"Bilesh",match:"PBKS vs MI",points:2},{name:"Fayiz Hashim",match:"PBKS vs MI",points:0},{name:"Fuhad",match:"PBKS vs MI",points:0},{name:"Jashir",match:"PBKS vs MI",points:6},
+    {name:"Jasil",match:"PBKS vs MI",points:0},{name:"Jisa",match:"PBKS vs MI",points:4},{name:"Livin",match:"PBKS vs MI",points:10},{name:"Lukeman",match:"PBKS vs MI",points:0},
+    {name:"MUHYUDHEEN DHANISH",match:"PBKS vs MI",points:0},{name:"Midhun Das",match:"PBKS vs MI",points:6},{name:"Mohamed Shafeeh",match:"PBKS vs MI",points:0},{name:"Muhammed Fayis",match:"PBKS vs MI",points:8},
+    {name:"NIDHIN",match:"PBKS vs MI",points:6},{name:"Navven",match:"PBKS vs MI",points:0},{name:"Nikhil",match:"PBKS vs MI",points:0},{name:"Nikhil Padikkal",match:"PBKS vs MI",points:6},
+    {name:"Nirmal Nandakumar",match:"PBKS vs MI",points:0},{name:"Nishad",match:"PBKS vs MI",points:0},{name:"Niyas V",match:"PBKS vs MI",points:6},{name:"RAKESH",match:"PBKS vs MI",points:10},
+    {name:"Rijesh",match:"PBKS vs MI",points:6},{name:"Sakhin",match:"PBKS vs MI",points:6},{name:"Sameer",match:"PBKS vs MI",points:4},{name:"Saviyo",match:"PBKS vs MI",points:0},
+    {name:"Shabid Karimbanakkal",match:"PBKS vs MI",points:6},{name:"Shafina",match:"PBKS vs MI",points:8},{name:"Shahsad",match:"PBKS vs MI",points:2},{name:"Shakir",match:"PBKS vs MI",points:6},
+    {name:"Shameer",match:"PBKS vs MI",points:0},{name:"Shamna",match:"PBKS vs MI",points:0},{name:"Shibil Jaleel",match:"PBKS vs MI",points:0},{name:"Sirajudheen",match:"PBKS vs MI",points:4},
+    {name:"Sooraj Sukumaran",match:"PBKS vs MI",points:0},{name:"Sudheesh Sudhakaran",match:"PBKS vs MI",points:8},{name:"Sumayya",match:"PBKS vs MI",points:0},{name:"Swathy Vinod",match:"PBKS vs MI",points:8},
+    {name:"VISHNU",match:"PBKS vs MI",points:0},{name:"Vipin K V",match:"PBKS vs MI",points:4},{name:"Vishal",match:"PBKS vs MI",points:6},{name:"Yasir",match:"PBKS vs MI",points:0},{name:"Navven",match:"KKR vs PBKS",points:0},{name:"Nishad",match:"KKR vs PBKS",points:0},{name:"Alfas U",match:"KKR vs PBKS",points:0},{name:"Adil",match:"KKR vs PBKS",points:0},
 
   ];
   persist();
